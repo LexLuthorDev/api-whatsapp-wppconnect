@@ -1,0 +1,19 @@
+[
+  {
+    "intent": "saudacao",
+    "examples": [
+      "oi",
+      "olá",
+      "bom dia",
+      "boa tarde",
+      "boa noite",
+      "e aí",
+      "oi, tudo bem?",
+      "olá, como vai?",
+      "eae",
+      "eae",
+      "eae",
+      "oie"
+    ]
+  }
+]

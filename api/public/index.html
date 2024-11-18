@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Painel Mult-Api</title>
+    <meta
+      property="og:image"
+      content="https://multapi.site/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../images/favicon.png"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd"
+      crossorigin="anonymous"
+    />
+    <!-- Inclua os arquivos CSS e JavaScript do Inputmask -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.5/css/inputmask.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.9/jquery.inputmask.min.js"
+      integrity="sha512-F5Ul1uuyFlGnIT1dk2c4kB4DBdi5wnBJjVhL7gQlGh46Xn0VhvD8kgxLtjdZ5YN83gybk/aASUAlpdoWUjRR3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      #bot-status {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body
+    class=""
+    style="
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    "
+  >
+    <div class="container mt-4 h-full">
+      <div class="flex justify-between mb-3">
+        <div class="w-1/2">
+          <h2 class="text-2xl font-semibold">Minhas Integrações</h2>
+        </div>
+        <div class="w-1/2 flex justify-end gap-2">
+          <button
+            class="btn text-white w-full bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md flex items-center justify-center"
+            data-bs-toggle="modal"
+            data-bs-target="#addIntegracaoWhatsModal"
+          >
+            Criar integração <i class="bi bi-whatsapp ml-2"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-12 mb-3" id="alertPlaceholderTableStatus"></div>
+
+      <table class="table-auto w-full border-collapse border border-gray-300">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 border-b border-gray-200 text-left">
+              Nome da integração
+            </th>
+            <th class="px-4 py-2 border-b border-gray-200 text-left">
+              Telefone da integração
+            </th>
+            <th
+              id="status-column"
+              class="px-4 py-2 border-b border-gray-200 text-left"
+            ></th>
+            <th class="px-4 py-2 border-b border-gray-200 text-center">
+              Ações
+            </th>
+          </tr>
+        </thead>
+        <tbody id="integracoes-table-body">
+          <!-- Linhas da tabela serão inseridas dinamicamente aqui -->
+        </tbody>
+      </table>
+
+      <div
+        id="empty-table-msg"
+        class="text-center text-muted mt-4"
+        style="display: none"
+      >
+        Nenhuma integração criada
+      </div>
+    </div>
+
+    <!-- Modal para adicionar integração Whats -->
+    <div
+      class="modal fade"
+      id="addIntegracaoWhatsModal"
+      tabindex="-1"
+      aria-labelledby="addIntegracaoWhatsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content rounded-lg shadow-lg border-0">
+          <div class="modal-header bg-blue-500 text-white rounded-t-lg">
+            <h5 class="modal-title" id="addIntegracaoWhatsModalLabel">
+              Adicionar Nova Integração Whats
+            </h5>
+            <button
+              type="button"
+              class="btn-close text-white opacity-75 hover:opacity-100"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-6">
+            <form id="add-integracao-whats-form">
+              <div id="alertPlaceholderAddWhats" class="mb-3"></div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="mb-4">
+                  <label
+                    for="integracao-whats-nomeSecao"
+                    class="form-label text-sm font-semibold text-gray-700"
+                    >Nome da Integração</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="integracao-whats-nomeSecao"
+                    required
+                  />
+                </div>
+
+                <div class="mb-4">
+                  <label
+                    for="integracao-whats-numero"
+                    class="form-label text-sm font-semibold text-gray-700"
+                    >Número do Telefone</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="integracao-whats-numero"
+                    placeholder="ex: 5548991300326"
+                    required
+                    pattern="\d{13}"
+                    title="O número deve ter exatamente 13 dígitos"
+                    oninput="this.value = this.value.replace(/\D/g, '').slice(0, 13);"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn w-full bg-blue-500 text-white hover:bg-blue-600 p-2 rounded-md"
+              >
+                Adicionar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Exclusão -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content rounded-lg shadow-lg border-0">
+          <div class="modal-header bg-red-500 text-white rounded-t-lg">
+            <h5 class="modal-title" id="deleteModalLabel">
+              Confirmar Exclusão
+            </h5>
+            <button
+              type="button"
+              class="btn-close text-white opacity-75 hover:opacity-100"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div id="alertPlaceholderExclusao" class="container mt-3 mb-0"></div>
+          <div class="modal-body p-6 text-lg text-gray-700">
+            Tem certeza que deseja excluir esta integração?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary px-6 py-2 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-100"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn bg-red-600 text-white hover:bg-red-700 px-6 py-2 rounded-md text-sm font-semibold"
+              id="deleteIntegracaoBtn"
+            >
+              Excluir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="loadingOverlay"
+      class="d-flex flex-column justify-content-center align-items-center d-none"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+      "
+    >
+      <div class="dot-spinner">
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+        <div class="dot3"></div>
+      </div>
+      <div class="loading-text text-white fs-5 mt-5">
+        Aguarde, iniciando a sua conexão ...
+      </div>
+    </div>
+    <style>
+      .dot-spinner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .dot-spinner div {
+        width: 10px;
+        height: 10px;
+        margin: 0 5px;
+        background-color: #ffffff; /* Cor primária */
+        border-radius: 50%;
+        animation: dotBounce 1.4s infinite ease-in-out both;
+      }
+
+      .dot-spinner .dot1 {
+        animation-delay: -0.32s;
+      }
+
+      .dot-spinner .dot2 {
+        animation-delay: -0.16s;
+      }
+
+      @keyframes dotBounce {
+        0%,
+        80%,
+        100% {
+          transform: scale(0);
+        }
+        40% {
+          transform: scale(1);
+        }
+      }
+    </style>
+
+    <!-- Modal PairingCode Whats Integracao -->
+    <div
+      class="modal fade"
+      id="PairingCodeModal"
+      tabindex="-1"
+      aria-labelledby="PairingCodeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-lg shadow-xl border-0">
+          <div class="modal-header bg-blue-600 text-white rounded-t-lg">
+            <h5 class="modal-title" id="PairingCodeModalLabel">Pairing Code</h5>
+            <button
+              type="button"
+              class="btn-close text-white opacity-75 hover:opacity-100"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body p-6">
+            <div
+              id="PairingCodeContainer"
+              class="text-center text-xl font-semibold text-gray-700"
+            >
+              <!-- O código será inserido aqui -->
+            </div>
+          </div>
+
+          <div
+            class="modal-footer justify-center text-center bg-gray-50 p-4 rounded-b-lg"
+          >
+            <p class="text-sm text-gray-600">
+              Insira o Pairing Code em até
+              <span id="countdown" class="font-bold text-red-600">3</span>
+              minutos.
+              <br />
+              Se o Pairing Code expirar, repita o processo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/javascripts/config.js" type="module"></script>
+    <script src="/javascripts/dashboard-cliente.js" type="module"></script>
+    <script src="/javascripts/showAlert.js" type="module"></script>
+
+    <!-- Socket io -->
+    <script
+      src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+      integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

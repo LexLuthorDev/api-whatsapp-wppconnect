@@ -1,0 +1,38 @@
+[
+  {
+    "userMessage": "oi",
+    "detectedIntent": "saudacao",
+    "botResponse": "Oi! Como posso ajudar você na Gomes Barber Shop?",
+    "timestamp": "2024-07-07T04:29:36.975Z"
+  },
+  {
+    "userMessage": "oi",
+    "detectedIntent": "saudacao",
+    "botResponse": "Olá! Em que posso ser útil hoje na Gomes Barber Shop?",
+    "timestamp": "2024-07-07T04:30:58.995Z"
+  },
+  {
+    "userMessage": "ola",
+    "detectedIntent": "saudacao",
+    "botResponse": "Olá! Bem-vindo ao nosso serviço de delivery. Como posso ajudá-lo hoje?",
+    "timestamp": "2024-07-07T04:31:14.225Z"
+  },
+  {
+    "userMessage": "oi",
+    "detectedIntent": "saudacao",
+    "botResponse": "Olá! Bem-vindo ao nosso serviço de delivery. Como posso ajudá-lo hoje?",
+    "timestamp": "2024-07-07T05:02:20.037Z"
+  },
+  {
+    "userMessage": "oi",
+    "detectedIntent": "saudacao",
+    "botResponse": "Olá! Bem-vindo à Gomes Barber Shop. Como posso ajudá-lo hoje?",
+    "timestamp": "2024-07-07T05:08:55.153Z"
+  },
+  {
+    "userMessage": "oie",
+    "detectedIntent": "saudacao",
+    "botResponse": "Olá! Bem-vindo ao nosso serviço de delivery. Como posso ajudá-lo hoje?",
+    "timestamp": "2024-07-07T05:13:34.686Z"
+  }
+]

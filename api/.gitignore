@@ -1,0 +1,62 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Diretórios do ambiente
+node_modules/
+dist/
+build/
+#.env
+#.env.*.local
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Testes e relatórios
+coverage/
+*.lcov
+
+# IDEs e editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Depuração e estado do sistema
+*.swp
+*.tmp
+*.temp
+*.pid
+*.seed
+*.pid.lock
+
+# Configurações de deploy
+.cache/
+*.bak
+*.orig
+*.rej
+
+# Outras ferramentas específicas
+npm-debug.log
+yarn-debug.log
+debug.log
+
+# Ignorar arquivos de saída temporários
+*.log.*
+*.out
+
+# Documentos gerados
+*.docx
+*.xlsx
+*.pdf
+
+# Arquivos de pacotes zipados
+*.zip
+*.tar.gz

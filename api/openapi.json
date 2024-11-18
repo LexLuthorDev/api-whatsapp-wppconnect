@@ -1,0 +1,250 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api- whatsapp wppconnect",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Whatsapp"
+    }
+  ],
+  "paths": {
+    "/whatsapp": {
+      "post": {
+        "tags": [
+          "Whatsapp"
+        ],
+        "summary": "Criar integracao",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "nomeSecao": "teste",
+                  "numero": "5548991300326"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/whatsapp/enviar-mensagem": {
+      "post": {
+        "tags": [
+          "Whatsapp"
+        ],
+        "summary": "Enviar mensagem",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "testando disparo cliente king",
+                  "destinatario": "554891300326",
+                  "nomeSecao": "king"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "x-mult-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "MULTAPI-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudGUiOjQsIm5vbWVTZWNhbyI6ImtpbmdwcmVtaW9zIiwicGxhdGZvcm0iOiJNdWx0IEFQSSIsImNyZWF0ZWRBdCI6IjIwMjQtMTAtMjNUMTM6NDc6NDQuODIzWiIsImlhdCI6MTcyOTY5MTI2NCwiZXhwIjoxNzYxMjI3MjY0fQ.3fLmWZpJcdBtj0hy9Cvfhvq-ueOftHWVoBkBcWw_28g"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoic3Vwb3J0ZWtpbmdwcmVtaW9zQGdtYWlsLmNvbSIsImlhdCI6MTcyOTY5MDk1OCwiZXhwIjoxNzI5Nzc3MzU4fQ.obNRuVk2i1F6q38pbl3SsF0BDs2xclay46-g19Q2HMA"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/whatsapp/iniciar/17": {
+      "post": {
+        "tags": [
+          "Whatsapp"
+        ],
+        "summary": "Iniciar integração",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/whatsapp/lexluthor": {
+      "get": {
+        "tags": [
+          "Whatsapp"
+        ],
+        "summary": "Listar minhas integrações",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY2xpZW50ZUB0ZXN0ZS5jb20iLCJpYXQiOjE3MjA5ODUwMTYsImV4cCI6MTcyMTA3MTQxNn0.cMnHpgdnzuMXuOy-4dwoJQo41i3XAnvWFyhYCb8bkYg"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/whatsapp/5": {
+      "delete": {
+        "tags": [
+          "Whatsapp"
+        ],
+        "summary": "Deletar Integracao",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/whatsapp/listar-logs": {
+      "get": {
+        "tags": [
+          "Whatsapp"
+        ],
+        "summary": "Listar Logs",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiY2xpZW50ZUB0ZXN0ZS5jb20iLCJpYXQiOjE3MjYxNTA4MzIsImV4cCI6MTcyNjIzNzIzMn0.NGt1YWWKfjruWbQWeyPzab_OBSTn4sm1sO-x7efYDfA"
+          },
+          {
+            "name": "x-mult-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "MULTAPI-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudGUiOjIsIm5vbWVTZWNhbyI6IjEiLCJwbGF0Zm9ybSI6Ik11bHQgQVBJIiwiY3JlYXRlZEF0IjoiMjAyNC0wNy0xNVQwMjozMTozNy42NTdaIiwiaWF0IjoxNzIxMDEwNjk3LCJleHAiOjE3MjM2MDI2OTd9.9trZmICsWqmFgkBF-YVpQW197AX5x4UtnPxHD_od7b8"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/whatsapp/backup-mensagens": {
+      "post": {
+        "tags": [
+          "Whatsapp"
+        ],
+        "summary": "Backup Mensagens",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "nomeSecao": "lexluthor"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/whatsapp/enviar-mensagem-com-imagem": {
+      "post": {
+        "tags": [
+          "Whatsapp"
+        ],
+        "summary": "Enviar mensagem com imagem",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "msg": "Estamos abertos! Venha nos visitar.",
+                  "destinatario": "554891300326",
+                  "nomeSecao": "burger",
+                  "urlImagem": "https://burger.zoomply.com.br/_core/_uploads/cadastro/2024/08/0200050824eihe6kjdek_thumb.jpg"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
